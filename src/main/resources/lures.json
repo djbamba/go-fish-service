@@ -1,0 +1,56 @@
+[
+  {
+    "id": "60a451d4c6821c0ae7a71947",
+    "name": "Googan Baits Krackin' Craws",
+    "colorWay": "Okeechobee Craw",
+    "imageUrl": "https://basspro.scene7.com/is/image/BassPro/2825406_100359928_is?$Prod_PLPThumb$",
+    "productUrl": "https://www.basspro.com/shop/en/googan-baits-krackin-craws",
+    "price": 9.99,
+    "type": "SOFT_BAIT"
+  },
+  {
+    "id": "60a451d5c6821c0ae7a71948",
+    "name": "Googan Baits Krackin' Craws",
+    "colorWay": "Green Pumpkin Purple",
+    "imageUrl": "https://basspro.scene7.com/is/image/BassPro/2923740_100359928_is?$Prod_PLPThumb$",
+    "productUrl": "https://www.basspro.com/shop/en/googan-baits-krackin-craws",
+    "price": 5.99,
+    "type": "SOFT_BAIT"
+  },
+  {
+    "id": "60a451d5c6821c0ae7a71949",
+    "name": "Googan Baits Krackin' Craws",
+    "colorWay": "Bamba Bug",
+    "imageUrl": "https://basspro.scene7.com/is/image/BassPro/2825403_100359928_is?$Prod_PLPThumb$",
+    "productUrl": "https://www.basspro.com/shop/en/googan-baits-krackin-craws",
+    "price": 5.99,
+    "type": "SOFT_BAIT"
+  },
+  {
+    "id": "60a451d5c6821c0ae7a7194a",
+    "name": "Googan Baits Krackin' Craws",
+    "colorWay": "Albama Craw",
+    "imageUrl": "https://basspro.scene7.com/is/image/BassPro/2825402_100359928_is?$Prod_PLPThumb$",
+    "productUrl": "https://www.basspro.com/shop/en/googan-baits-krackin-craws",
+    "price": 5.99,
+    "type": "SOFT_BAIT"
+  },
+  {
+    "id": "60aeee6a4515cf3beb1832b6",
+    "name": "River2Sea Larry Dahlberg Series Rattling Whopper Plopper",
+    "colorWay": "Loon",
+    "imageUrl": "https://basspro.scene7.com/is/image/BassPro/2186434_1412030300341_is?$Prod_PLPThumb$",
+    "productUrl": "https://www.basspro.com/shop/en/River2Sea-Larry-Dahlberg-Series-Rattling-Whopper-Plopper",
+    "price": 16.99,
+    "type": "HARD_BAIT"
+  },
+  {
+    "id": "60aeef594515cf3beb1832b7",
+    "name": "Z-Man Chatterbait Jackhammer StealthBlade Jig",
+    "colorWay": "Clearwater Shad",
+    "imageUrl": "https://basspro.scene7.com/is/image/BassPro/2898180_100825799_is?$Prod_PLPThumb$",
+    "productUrl": "https://www.basspro.com/shop/en/z-man-chatterbait-jackhammer-stealthblade-jig",
+    "price": 15.99,
+    "type": "SPINNER_BUZZ_BAIT"
+  }
+]
