@@ -33,13 +33,14 @@ public class LureController {
 
   @PostMapping("/add")
   public ResponseEntity<Lure> addLure(@RequestBody Lure lure) {
+    log.debug("{}", lure);
     return ResponseEntity.ok(lureService.addLure(lure));
   }
 
   @GetMapping("/{id}")
   public ResponseEntity<Lure> findLureById(@PathVariable String id) {
     Optional<Lure> lure = lureService.findLureById(id);
-    lure.ifPresent(l -> log.info("{}", l));
+    lure.ifPresent(l -> log.debug("{}", l));
 
     return lure.map(ResponseEntity::ok)
         .orElseThrow(() -> new NoSuchElementException(String.format("ID: [%s] does not exist", id)));
@@ -47,19 +48,21 @@ public class LureController {
 
   @PutMapping("/update")
   public ResponseEntity<Lure> updateLure(@RequestBody Lure lure) {
+    log.info("{}", lure);
     return ResponseEntity.ok(lureService.updateLure(lure));
   }
 
   @DeleteMapping("/delete/{id}")
   public ResponseEntity<String> deleteLureById(@PathVariable String id) {
+    log.debug("{}", id);
     Optional<Lure> deleteLure = lureService.findLureById(id);
 
     return deleteLure
         .map(l -> {
               lureService.deleteLureById(l.getId());
-              return ResponseEntity.ok().body(String.format("Deleted ID: [%s]", id));
+              return ResponseEntity.ok(String.format("{ \"message\": \"deleted %s\"}", id));
             })
         .orElseThrow(
-            () -> new NoSuchElementException(String.format("ID: [%s] does not exist", id)));
+            () -> new NoSuchElementException(String.format("{ \"message\": \"id %s does not exist\"}", id)));
   }
 }
