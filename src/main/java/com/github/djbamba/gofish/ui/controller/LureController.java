@@ -26,12 +26,12 @@ public class LureController {
   private final LureService lureService;
 
 
-  @GetMapping("/all")
+  @GetMapping
   public ResponseEntity<List<Lure>> allProducts() {
     return ResponseEntity.ok(lureService.getAllLures());
   }
 
-  @PostMapping("/add")
+  @PostMapping
   public ResponseEntity<Lure> addLure(@RequestBody Lure lure) {
     log.debug("{}", lure);
     return ResponseEntity.ok(lureService.addLure(lure));
@@ -46,13 +46,13 @@ public class LureController {
         .orElseThrow(() -> new NoSuchElementException(String.format("ID: [%s] does not exist", id)));
   }
 
-  @PutMapping("/update")
+  @PutMapping
   public ResponseEntity<Lure> updateLure(@RequestBody Lure lure) {
-    log.info("{}", lure);
+    log.debug("{}", lure);
     return ResponseEntity.ok(lureService.updateLure(lure));
   }
 
-  @DeleteMapping("/delete/{id}")
+  @DeleteMapping("/{id}")
   public ResponseEntity<String> deleteLureById(@PathVariable String id) {
     log.debug("{}", id);
     Optional<Lure> deleteLure = lureService.findLureById(id);
