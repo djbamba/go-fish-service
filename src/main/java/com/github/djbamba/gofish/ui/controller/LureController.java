@@ -33,7 +33,7 @@ public class LureController {
 
   @PostMapping
   public ResponseEntity<Lure> addLure(@RequestBody Lure lure) {
-    log.debug("{}", lure);
+    log.debug("Add: {}", lure);
     return ResponseEntity.ok(lureService.addLure(lure));
   }
 
@@ -48,13 +48,13 @@ public class LureController {
 
   @PutMapping
   public ResponseEntity<Lure> updateLure(@RequestBody Lure lure) {
-    log.debug("{}", lure);
+    log.debug("Update: {}", lure);
     return ResponseEntity.ok(lureService.updateLure(lure));
   }
 
   @DeleteMapping("/{id}")
   public ResponseEntity<String> deleteLureById(@PathVariable String id) {
-    log.debug("{}", id);
+    log.debug("Delete: {}", id);
     Optional<Lure> deleteLure = lureService.findLureById(id);
 
     return deleteLure
