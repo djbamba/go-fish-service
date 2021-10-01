@@ -6,6 +6,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
+import reactor.core.publisher.Mono;
 
 @RestController
 public class HomeController {
@@ -18,7 +19,7 @@ public class HomeController {
   }
 
   @GetMapping("/weather")
-  public ResponseEntity<String> getCurrentWeather(@RequestParam String zip) {
-    return ResponseEntity.ok(weatherClient.getCurrentWeather(zip));
+  public Mono<ResponseEntity<String>> getCurrentWeather(@RequestParam String zip) {
+    return weatherClient.getCurrentWeather(zip);
   }
 }
