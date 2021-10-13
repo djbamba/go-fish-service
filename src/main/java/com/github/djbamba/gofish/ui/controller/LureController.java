@@ -1,13 +1,15 @@
 package com.github.djbamba.gofish.ui.controller;
 
+import static java.lang.String.format;
+
 import com.github.djbamba.gofish.ui.model.products.Lure;
 import com.github.djbamba.gofish.ui.service.LureService;
 import java.util.List;
-import java.util.NoSuchElementException;
-import java.util.Optional;
 import lombok.RequiredArgsConstructor;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.http.HttpHeaders;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -22,6 +24,7 @@ import org.springframework.web.bind.annotation.RestController;
 @RequestMapping("/lures")
 @RequiredArgsConstructor
 public class LureController {
+
   private static final Logger log = LoggerFactory.getLogger(LureController.class);
   private final LureService lureService;
 
@@ -34,35 +37,43 @@ public class LureController {
   @PostMapping
   public ResponseEntity<Lure> addLure(@RequestBody Lure lure) {
     log.debug("Add: {}", lure);
-    return ResponseEntity.ok(lureService.addLure(lure));
+    return ResponseEntity.status(HttpStatus.CREATED).body(lureService.addLure(lure));
   }
 
   @GetMapping("/{id}")
   public ResponseEntity<Lure> findLureById(@PathVariable String id) {
-    Optional<Lure> lure = lureService.findLureById(id);
-    lure.ifPresent(l -> log.debug("{}", l));
+    log.debug("findLureById: {}", id);
 
-    return lure.map(ResponseEntity::ok)
-        .orElseThrow(() -> new NoSuchElementException(String.format("ID: [%s] does not exist", id)));
+    return lureService.findLureById(id)
+        .map(lure -> ResponseEntity.ok()
+            .header(HttpHeaders.LOCATION, format("/lures/%s", id))
+            .body(lure))
+        .orElse(ResponseEntity.notFound().build());
   }
 
   @PutMapping
   public ResponseEntity<Lure> updateLure(@RequestBody Lure lure) {
+    if (lure == null || lure.getId() == null) {
+      return ResponseEntity.badRequest().build();
+    }
     log.debug("Update: {}", lure);
-    return ResponseEntity.ok(lureService.updateLure(lure));
+
+    return lureService.findLureById(lure.getId())
+        .map(l -> ResponseEntity.ok()
+            .header(HttpHeaders.LOCATION, format("/lures/%s", l.getId()))
+            .body(lure))
+        .orElse(ResponseEntity.notFound().build());
   }
 
   @DeleteMapping("/{id}")
-  public ResponseEntity<String> deleteLureById(@PathVariable String id) {
+  public ResponseEntity<?> deleteLureById(@PathVariable String id) {
     log.debug("Delete: {}", id);
-    Optional<Lure> deleteLure = lureService.findLureById(id);
 
-    return deleteLure
+    return lureService.findLureById(id)
         .map(l -> {
-              lureService.deleteLureById(l.getId());
-              return ResponseEntity.ok(String.format("{ \"message\": \"deleted %s\"}", id));
-            })
-        .orElseThrow(
-            () -> new NoSuchElementException(String.format("{ \"message\": \"id %s does not exist\"}", id)));
+          lureService.deleteLureById(l.getId());
+          return ResponseEntity.ok().build();
+        })
+        .orElse(ResponseEntity.notFound().build());
   }
 }
