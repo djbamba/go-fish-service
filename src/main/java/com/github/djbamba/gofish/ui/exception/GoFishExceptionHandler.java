@@ -20,7 +20,6 @@ public class BaseExceptionHandler extends ResponseEntityExceptionHandler {
     return ErrorResponse.builder()
         .status(HttpStatus.NOT_FOUND)
         .message(ex.getMessage())
-        .path(getPath.apply(request))
         .build()
         .entity();
   }
