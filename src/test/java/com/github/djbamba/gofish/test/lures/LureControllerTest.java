@@ -114,6 +114,23 @@ public class LureControllerTest {
   }
 
   @Test
+  @DisplayName("POST /lures - Bad Request - Malformed JSON")
+  public void testCreateLureBadRequestMalformedJson() throws Exception {
+    when(service.findLureById(any())).thenReturn(Optional.empty());
+
+    mockMvc.perform(put("/lures")
+            .contentType(MediaType.APPLICATION_JSON)
+            .content("{"
+                + "        \"name\": \"Googan Baits Krackin' Craws\",\n"
+                + "        \"colorWay\": \"Okeechobee Craws,\n"
+                + "        \"price\": 10.56,\n"
+                + "        \"type\": \"SOFT_BAIT\"\n"
+                + "    }"))
+        .andExpect(status().isBadRequest())
+        .andExpect(jsonPath("$.message", is("Malformed JSON payload")));
+  }
+
+  @Test
   @DisplayName("PUT /lures/AEN - Success")
   public void testLurePutSuccess() throws Exception {
     Lure putLure = Lure.builder()
@@ -203,6 +220,23 @@ public class LureControllerTest {
             .contentType(MediaType.APPLICATION_JSON)
             .content(""))
         .andExpect(status().isBadRequest());
+  }
+
+  @Test
+  @DisplayName("PUT /lures/AEN - Bad Request - Malformed JSON")
+  public void testLurePutBadRequestMalformedJson() throws Exception {
+    when(service.findLureById(any())).thenReturn(Optional.empty());
+
+    mockMvc.perform(put("/lures")
+            .contentType(MediaType.APPLICATION_JSON)
+            .content("{"
+                + "        \"name\": \"Googan Baits Krackin' Craws\",\n"
+                + "        \"colorWay\": \"Okeechobee Craws,\n"
+                + "        \"price\": 10.56,\n"
+                + "        \"type\": \"SOFT_BAIT\"\n"
+                + "    }"))
+        .andExpect(status().isBadRequest())
+        .andExpect(jsonPath("$.message", is("Malformed JSON payload")));
   }
 
   @Test
