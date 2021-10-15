@@ -1,0 +1,29 @@
+[
+  {
+    "id": "AEN",
+    "name": "Krackin' Craws",
+    "colorWay": "Alabama Craw",
+    "imageUrl": "http://dummyimage0.jpg",
+    "productUrl": "http://dummyproducturl0.html",
+    "price": 5.97,
+    "type": "SOFT_BAIT"
+  },
+  {
+    "id": "IJK",
+    "name": "Whopper Plopper",
+    "colorWay": "Loon",
+    "imageUrl": "http://dummyimage1.jpg",
+    "productUrl": "http://dummyproducturl1.html",
+    "price": 16.99,
+    "type": "HARD_BAIT"
+  },
+  {
+    "id": "XYZ",
+    "name": "Jackhammer StealthBlade",
+    "colorWay": "Clearwater Shad",
+    "imageUrl": "http://dummyimage2.jpg",
+    "productUrl": "http://dummyproducturl2.html",
+    "price": 15.99,
+    "type": "SPINNER_BUZZ_BAIT"
+  }
+]
