@@ -262,7 +262,6 @@ public class LureControllerTest {
   @Test
   @DisplayName("DELETE /lures/AEN - Not Found")
   public void testLureDeleteNotFound() throws Exception {
-
     when(service.findLureById("AEN")).thenReturn(Optional.empty());
     doNothing().when(service).deleteLureById("AEN");
 
